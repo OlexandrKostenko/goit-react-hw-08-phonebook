@@ -20,14 +20,14 @@ export class App extends Component {
   componentDidMount() {
     const contacts = JSON.parse(localStorage.getItem('contacts')) || contactsRandom;
     this.setState({contacts});
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts.lenght !== 0 &&
       prevState.contacts.lenght !== this.state.contacts.length) {
         localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
       };
-  }
+  };
 
   addNewContact = data => {
     if (this.checkContact(data.name)) {
@@ -80,5 +80,4 @@ export class App extends Component {
       <ContactsList contacts={this.filteredContacts()} handleDelete={this.handleDelete}/>
     </Wrapper>
   )}
-
 };
