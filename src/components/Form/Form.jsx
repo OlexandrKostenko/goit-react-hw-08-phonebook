@@ -6,7 +6,7 @@ export class Form extends Component {
     state = {
         name: '',
         number: '',
-    }
+    };
 
     handleChange = (event) => {
         const {value, name} = event.currentTarget;
@@ -21,7 +21,7 @@ export class Form extends Component {
         event.preventDefault();
         this.props.onSubmit({...this.state})
         this.reset();
-      }
+      };
 
     render() {
         const {name, number} = this.state;
