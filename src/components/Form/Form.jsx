@@ -1,32 +1,37 @@
-import { Component } from "react";
 import PropTypes from 'prop-types';
 import { Label, SubmitButton, FormWrapper, Input } from "./Form.styled";
+import { useState } from "react";
 
-export class Form extends Component {
-    state = {
-        name: '',
-        number: '',
+export const Form = ({onSubmit}) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleChange = (event) => {
+    switch (event.target.name) {
+      case 'name':
+        setName(event.target.value);
+        break;
+      case 'number':
+        setNumber(event.target.value);
+        break;
+      default:
+        break;
+   }
     };
 
-    handleChange = (event) => {
-        const {value, name} = event.currentTarget;
-        this.setState({[name]: value})
-      };
-
-    reset = () => {
-        this.setState({name :'', number:''})
+  const reset = () => {
+    setName('');
+    setNumber('');
       };
     
-    handleSubmit = (event) => {
+   const handleSubmit = (event) => {
         event.preventDefault();
-        this.props.onSubmit({...this.state})
-        this.reset();
+     onSubmit({ name, number });
+        reset();
       };
-
-    render() {
-        const {name, number} = this.state;
+       
     return (
-    <FormWrapper onSubmit={this.handleSubmit}>
+    <FormWrapper onSubmit={handleSubmit}>
         <label htmlFor="name">
           <Label>Name</Label>
           <Input type="text"
@@ -36,7 +41,7 @@ export class Form extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             value={name}
-            onChange={this.handleChange} />
+            onChange={handleChange} />
         </label>
         <label htmlFor="number">
           <Label>Number</Label>
@@ -48,12 +53,12 @@ export class Form extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
-            onChange={this.handleChange}
+            onChange={handleChange}
 />
         </label>
         <SubmitButton type="submit">Add contact</SubmitButton>
       </FormWrapper>
-    )}};
+    )};
 
 Form.propTypes = {
     onSubmit: PropTypes.func.isRequired,
