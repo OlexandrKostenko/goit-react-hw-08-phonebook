@@ -3,9 +3,12 @@ import { nanoid } from "nanoid";
 import React from "react";
 import PropTypes from 'prop-types';
 import { List } from "./ContactsList.styled";
+import { useDispatch } from "react-redux";
+import { removeContactAction } from "redux/contactSlice";
 
 
 export const ContactsList = ({ contacts, handleDelete }) => {
+  const dispatch = useDispatch();
     return (
         <div>
         
@@ -18,7 +21,7 @@ export const ContactsList = ({ contacts, handleDelete }) => {
           id={id} 
           name={name} 
           number={number}
-          handleDelete={handleDelete}
+          handleDelete={() => dispatch(removeContactAction(id))}
           ></ContactItem>
           )}
           )}
