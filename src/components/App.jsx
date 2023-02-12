@@ -7,13 +7,13 @@ import { filteredContact } from 'redux/filterSlice';
 import { useEffect } from 'react';
 import { addContact, fetchContacts } from 'redux/operations';
 
-
 export const App = () => {
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchContacts());
-  },[dispatch])
+  }, [dispatch]);
 
   const filter = useSelector(state => state.filter.filter);
   const contacts = useSelector(state => state.contact.items);
