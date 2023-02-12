@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 import { Input } from "components/Form/Form.styled";
 
-export const Filter = ({value, onChange}) => {
+export const Filter = ({ value, onChange }) => {
     return(
         <label htmlFor="" id={nanoid()}>
           <p>Find contacts by name</p>
@@ -11,7 +11,8 @@ export const Filter = ({value, onChange}) => {
     );
 };
 
+
 Filter.propTypes = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
 };
