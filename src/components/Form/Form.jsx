@@ -4,15 +4,15 @@ import { useState } from "react";
 
 export const Form = ({onSubmit}) => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = (event) => {
     switch (event.target.name) {
       case 'name':
         setName(event.target.value);
         break;
-      case 'phone':
-        setPhone(event.target.value);
+      case 'number':
+        setNumber(event.target.value);
         break;
       default:
         break;
@@ -21,12 +21,12 @@ export const Form = ({onSubmit}) => {
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
       };
     
    const handleSubmit = (event) => {
         event.preventDefault();
-     onSubmit({ name, phone });
+     onSubmit({ name, number });
         reset();
       };
        
@@ -47,12 +47,12 @@ export const Form = ({onSubmit}) => {
           <Label>Number</Label>
         <Input
             type="tel"
-            id='phone'
-            name="phone"
+            id='number'
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={phone}
+            value={number}
             onChange={handleChange}
 />
         </label>

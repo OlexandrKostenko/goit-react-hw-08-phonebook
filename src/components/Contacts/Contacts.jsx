@@ -5,13 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filteredContact } from 'redux/filterSlice';
 import { useEffect } from 'react';
 import { addContact, fetchContacts } from 'redux/operations';
+import { selectAuthRefresh, selectAuthToken } from "redux/Auth/auth.selector";
 
 export const Contacts = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectAuthRefresh);
   
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+      dispatch(fetchContacts());
+    }
+  , [dispatch]);
 
   const filter = useSelector(state => state.filter.filter);
   const contacts = useSelector(state => state.contact.items);
@@ -40,7 +43,9 @@ export const Contacts = () => {
     });
   };
 
-    return (
+    return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
         <>
       <h1>Phonebook</h1>
       <Form onSubmit={addNewContact}></Form>

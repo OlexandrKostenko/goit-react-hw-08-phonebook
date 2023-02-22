@@ -10,14 +10,14 @@ export const ContactsList = ({ contacts }) => {
         <div>
         
         <List>
-          {contacts.map(({name, phone, id}) => {
+          {contacts.map(({name, number, id}) => {
             return (
                 
         <ContactItem 
           key={nanoid()} 
           id={id} 
           name={name} 
-          number={phone}
+          number={number}
           ></ContactItem>
           )}
           )}

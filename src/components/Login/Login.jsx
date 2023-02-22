@@ -1,21 +1,46 @@
+import { publicApi } from "http/http";
+import { useState } from "react";
 import { useDispatch } from "react-redux"
+import { authLoginThunk } from "redux/Auth/authLoginThunk";
+import { FormWrapper, Input, Label, SubmitButton } from "./Login.styled";
+
+const initState = {
+    email: '',
+    password: '',
+}
 
 export const Login = () => {
     const dispatch = useDispatch();
+    const [values, setValues] = useState(initState)
 
+    const handleChange = event => {
+        const { value, name } = event.target;
+        setValues(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            await dispatch(authLoginThunk({ email: values.email, password: values.password })).unwrap();
+            setValues(initState);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     
     return (
-        <form>
+        <FormWrapper onSubmit={handleSubmit}>
             <h1>Login Page</h1>
             <div>
-                <input type="text" id="email" name="email" value='email' />
-                <label htmlFor="email">Email</label>
+                <Input type="text" id="email" name="email" value={values.email} onChange={handleChange}/>
+                <Label htmlFor="email">Email</Label>
             </div>
             <div>
-                <input type="password" id="password" name="password" value='password' />
-                <label htmlFor="password">Password</label>
+                <Input type="password" id="password" name="password" value={values.password} onChange={handleChange}/>
+                <Label htmlFor="password">Password</Label>
             </div>
-            <button type="submit">Login</button>
-        </form>
+            <SubmitButton type="submit">Login</SubmitButton>
+        </FormWrapper>
     )
 }
