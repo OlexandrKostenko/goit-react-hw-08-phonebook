@@ -6,10 +6,15 @@ import { filteredContact } from 'redux/filterSlice';
 import { useEffect } from 'react';
 import { addContact, fetchContacts } from 'redux/operations';
 import { selectAuthRefresh } from "redux/Auth/auth.selector";
+import { refreshUser } from "redux/Auth/authRefreshThunk";
 
 export const Contacts = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectAuthRefresh);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   
   useEffect(() => {
       dispatch(fetchContacts());
