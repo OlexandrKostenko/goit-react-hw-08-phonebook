@@ -22,7 +22,7 @@ export const App = () => {
 
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/goit-react-hw-08-phonebook">
       <Wrapper>
         {isLoggedIn ? <UserMenu/> : <AuthNav/>}
       <Routes >
