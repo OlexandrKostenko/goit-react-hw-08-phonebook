@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filteredContact } from 'redux/filterSlice';
 import { useEffect } from 'react';
 import { addContact, fetchContacts } from 'redux/operations';
-import { selectAuthRefresh, selectAuthToken } from "redux/Auth/auth.selector";
+import { selectAuthRefresh } from "redux/Auth/auth.selector";
 
 export const Contacts = () => {
   const dispatch = useDispatch();

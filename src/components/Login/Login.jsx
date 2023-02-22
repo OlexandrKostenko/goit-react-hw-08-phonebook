@@ -1,4 +1,3 @@
-import { publicApi } from "http/http";
 import { useState } from "react";
 import { useDispatch } from "react-redux"
 import { authLoginThunk } from "redux/Auth/authLoginThunk";
